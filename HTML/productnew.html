@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sản phẩm</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .navbar-nav .nav-link {
+      margin-left: 15px;
+      margin-right: 15px;
+      color: black;
+    }
+
+    .nav-link.active {
+      text-decoration: underline;
+      color: #c23e2e !important;
+    }
+
+    .d-flex {
+      gap: 20px;
+    }
+
+    .d-flex a:hover {
+      color: orange;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: orange;
+    }
+
+    section {
+      background-color: #fff !important;
+    }
+
+    .hero-text {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .intro-header {
+      background-color: #f4e3c1;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .intro-header h2 {
+      color: #4f2b3d;
+      margin-top: 15px;
+    }
+
+    .intro-header p {
+      color: #555;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.1);
+    }
+    .badge.new {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #6f4f32;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 5px;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    .product-card-body {
+      padding: 15px;
+    }
+
+    .product-card-body h5 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #4f2b3d;
+    }
+
+    .product-card-body p {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+
+    .product-card:hover .product-img,.product-card:hover .product-card-body {
+      opacity: 0.3;
+      transform: scale(1.05);
+    }
+    .product-card:hover .product-buttons {
+      opacity: 1;
+    }
+    .product-buttons {
+      opacity: 0;
+      position: absolute;
+      bottom: 140px;
+      left: 10%;
+      gap: 10px;
+    }
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      z-index: 2;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .overlay {
+      top: 40%;
+    }
+
+    .product-card:hover .overlay {
+      opacity: 1;
+    }
+
+    .view-details {
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #4f2b3d;
+      border: 1px solid #4f2b3d;
+      text-decoration: none;
+    }
+
+    .view-details:hover {
+      background-color: #4f2b3d;
+      color: white;
+    }
+
+    .product-card-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      gap: 10px;
+      background-color: #f1f1f1;
+    }
+
+    .product-buttons a {
+      text-decoration: none;
+      background-color: #4f2b3d;
+      color: #fff;
+      padding: 7px 7px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .product-buttons a:hover {
+      background-color: black;
+    }
+
+    .product-card-footer span {
+      font-weight: 600;
+      font-size: 18px;
+      color: #4f2b3d;
+    }
+
+    .info-section {
+      background-color: #f4e3c1 !important;
+      padding-top: 30px;
+      padding-bottom: 10px;
+    }
+
+    section h2 {
+      font-size: 36px;
+      color: #3e2b2b;
+      font-weight: bold;
+    }
+
+    .info-section h3 {
+      font-size: 18px;
+      color: #3e2b2b;
+      font-weight: bold;
+    }
+
+    .info-section p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .info-section a {
+      color: #3e2b2b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .info-section a:hover {
+      text-decoration: underline;
+    }
+
+    .info-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .info-box {
+      flex: 1;
+    }
+
+    .info-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      margin-bottom: 15px;
+    }
+
+    .text-brown {
+      color: #6f4f28;
+    }
+
+    .text-brown:hover {
+      color: black !important;
+    }
+
+    .description-section h3 {
+      font-size: 36px;
+      color: #3e2b2b;
+      font-weight: bold;
+    }
+
+    .description-section p {
+      font-size: 20px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .description-section .d-flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .description-section .d-flex img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .description-section .d-flex div {
+      flex: 1;
+    }
+
+    .map iframe {
+      border-radius: 10px;
+    }
+    #toggleInfoButton {
+      display: none;
+      margin: 20px auto;
+      background-color: #633d1e;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    @media (max-width:500px) {
+      .info-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+      }
+
+      .nav-link i {
+        margin-left: 30px;
+      }
+
+      .info-box {
+        display: none;
+      }
+
+      .info-box.visible {
+        display: block;
+      }
+
+      #toggleInfoButton {
+        display: block;
+      }
+
+      .map {
+        width: 100% !important;
+        margin: 0 auto;
+      }
+
+      .map iframe {
+        height: 200px;
+      }
+    }
+
+    .toast-container {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      z-index: 1050;
+    }
+
+    .toast {
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-weight: bold;
+      display: none;
+      position: relative;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    .footer {
+      background-color: #3e2b2b;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .nav-link.active {
+      text-decoration: underline;
+      color: #c23e2e !important;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand d-flex align-items-center w-25" href="../HTML/home.html">
+      <img class="ms-5 w-25" src="../IMG/logo-removebg-preview.png" alt="Logo">
+      <span>FEAT CHOCOLATE</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <div class="navbar-nav d-flex justify-content-center">
+          <li class="nav-item"><a class="nav-link" href="../HTML/home.html">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../HTML/product.html">Sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link" href="../HTML/introduction.html">Giới thiệu</a></li>
+          <li class="nav-item"><a class="nav-link" href="../HTML/contact.html">Liên hệ</a></li>
+        </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Chính sách và Điều khoản
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="../HTML/policy.html">Chính sách</a></li>
+            <li><a class="dropdown-item" href="../HTML/terms.html">Điều khoản</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex me-lg-5">
+      <div class="position-relative">
+        <a class="nav-link" href="#" id="toggleSearch"><i class="bi bi-search"></i></a>
+        <div id="searchDropdown" class="d-none position-absolute bg-white p-2 shadow rounded"
+          style="top: 100%; right: 0; z-index: 1000; width: 250px;">
+          <input type="text" id="searchBox" class="form-control" placeholder="Tìm sản phẩm...">
+        </div>
+      </div>
+      <a class="nav-link" href="../HTML/personal.html" id="personalLink" style="display: block;">
+        <i class="bi bi-person"></i>
+      </a>
+      <a class="nav-link" href="../HTML/cart.html"><i class="bi bi-cart"></i></a>
+      <a class="nav-link" href="#" id="loginSignupLink" style="display: block;"
+        onclick="window.location.href = '../HTML/loginandres.html';"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập
+        / Đăng ký</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="intro-header">
+      <h2 class="text-center">Sản phẩm Socola</h2>
+      <p>Gửi ngọt ngào đến người bạn thương!</p>
+    </div>
+    <section class="container">
+      <div class="d-flex justify-content-end">
+        <select id="sortSelect" class="form-select w-auto mt-3">
+          <option value="default">Sắp xếp</option>
+          <option value="name-asc">Tên: A → Z</option>
+          <option value="name-desc">Tên: Z → A</option>
+          <option value="price-asc">Giá: Thấp → Cao</option>
+          <option value="price-desc">Giá: Cao → Thấp</option>
+        </select>
+      </div>
+      <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="productContainer">
+
+          <!-- Product 1 -->
+          <div class="col product-card-wrapper">
+            <div class="product-card position-relative">
+              <img src="../IMG/socola1.png" class="product-img" alt="Chocolate 1">
+              <div class="overlay">
+                <a href="#" class="btn btn-light view-details">Xem chi tiết</a>
+              </div>
+              <div class="badge new">Mới</div>
+              <div class="product-card-body">
+                <h5 class="card-title">Chocolate Dark 70%</h5>
+                <p class="card-text">Chocolate đen nguyên chất, hương vị đậm đà, tuyệt vời cho những ai yêu thích sự
+                  mạnh mẽ của socola đen.</p>
+              </div>
+              <div class="product-card-footer">
+                <span>140,000 VND</span>
+                <div class="product-buttons">
+                  <a href="#" class="btn-add-to-cart" data-name="Chocolate Dark 70%" data-price="140000"
+                  data-image="../IMG/socola1.png">Thêm vào giỏ hàng</a>
+                <a href="#">Mua ngay</a>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+          <!-- product 2-->
+          <div class="col product-card-wrapper">
+            <div class="product-card position-relative">
+              <img src="../IMG/socola1.png" class="product-img" alt="Chocolate 1">
+              <div class="overlay">
+                <a href="#" class="btn btn-light view-details">Xem chi tiết</a>
+              </div>
+              <div class="badge new">Mới</div>
+              <div class="product-card-body">
+                <h5 class="card-title">Chocolate Dark 70%</h5>
+                <p class="card-text">Chocolate đen nguyên chất, hương vị đậm đà, tuyệt vời cho những ai yêu thích sự
+                  mạnh mẽ của socola đen.</p>
+              </div>
+              <div class="product-card-footer">
+                <span>140,000 VND</span>
+                <div class="product-buttons">
+                  <a href="#" class="btn-add-to-cart" data-name="Chocolate Dark 70%" data-price="140000"
+                  data-image="../IMG/socola1.png">Thêm vào giỏ hàng</a>
+                  <a href="#">Mua ngay</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col product-card-wrapper">
+            <div class="product-card position-relative">
+              <img src="../IMG/socola2.png" class="product-img" alt="Chocolate 2">
+              <div class="overlay">
+                <a href="#" class="btn btn-light view-details">Xem chi tiết</a>
+              </div>
+              <div class="badge new">Mới</div>
+              <div class="product-card-body">
+                <h5 class="card-title">Chocolate MILK</h5>
+                <p class="card-text">Chocolate đen nguyên chất, hương vị đậm đà, tuyệt vời cho những ai yêu thích sự
+                  mạnh mẽ của socola đen.</p>
+              </div>
+              <div class="product-card-footer">
+                <span>170,000 VND</span>
+                <div class="product-buttons">
+                  <a href="#" class="btn-add-to-cart" data-name="Chocolate MILK" data-price="140000"
+                  data-image="../IMG/socola2.png">Thêm vào giỏ hàng</a>
+                <a href="#">Mua ngay</a>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+          <nav>
+            <ul class="pagination" id="pagination"></ul>
+          </nav>
+        </div>
+      </div>
+      <section class="info-section">
+        <div class="info-content p-md-2">
+          <div class="info-box">
+            <h2>FEAT Chocolate</h2>
+            <p>Chúng tôi mời bạn đến khám phá và trải nghiệm hương vị hạnh phúc, nơi niềm vui và chất lượng hòa quyện
+              trong từng viên socola. Từ vị đắng nhẹ đến sự ngọt ngào quyến rũ, mỗi miếng socola sẽ dẫn dắt bạn vào hành
+              trình cảm xúc đặc biệt và đáng nhớ.</p>
+          </div>
+          <div class="info-box">
+            <h3>Thông tin liên hệ</h3>
+            <p>Địa chỉ: Số 12 Nguyễn Văn Bảo, Phường 1, Quận Gò Vấp, Thành phố Hồ Chí Minh</p>
+            <p>Email: vietnguyen29105@feat-chocolate.com</p>
+            <p>Số điện thoại: 0123 456 789</p>
+            <a href="#">Liên hệ với chúng tôi</a>
+          </div>
+          <div class="info-box">
+            <h3>Chính sách và Điều khoản</h3>
+            <p><a href="#">Chính sách bảo mật</a></p>
+            <p><a href="#">Chính sách đổi trả</a></p>
+            <p><a href="#">Điều khoản sử dụng</a></p>
+          </div>
+          <div class="info-box">
+            <h3>Địa chỉ</h3>
+            <div class="map" style="height: 300px; width: 90%; margin-top: 20px; margin-right: 10px;">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3918.872745742136!2d106.68414867504248!3d10.821049239330454!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1744343689231!5m2!1sen!2s"
+                width="100%" height="200px" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <p style="font-size: 8.8px; margin-top: 40px;">Số 12 Nguyễn Văn Bảo, Phường 1, Quận Gò Vấp, Thành phố Hồ Chí Minh</p>
+            </div>
+          </div>
+          <button id="toggleInfoButton">Xem thêm</button>
+        </div>
+      </section>
+  </div>
+  </section>
+  </div>
+  <div id="toastMessage" class="toast-container">
+    <div id="toast" class="toast">
+      <span id="toastMessageText"></span>
+    </div>
+  </div>
+  <footer class="footer text-center">
+    <p>&copy; 2025 FEAT Chocolate. All rights reserved.</p>
+  </footer>
+  <script>
+    const toggleSearch = document.getElementById("toggleSearch");
+    const searchDropdown = document.getElementById("searchDropdown");
+    const searchBox = document.getElementById("searchBox");
+    toggleSearch.addEventListener("click", function (e) {
+      e.preventDefault();
+      searchDropdown.classList.toggle("d-none");
+      if (!searchDropdown.classList.contains("d-none")) {
+        searchBox.focus();
+      }
+    });
+    document.addEventListener("click", function (e) {
+      if (!searchDropdown.contains(e.target) && !toggleSearch.contains(e.target)) {
+        searchDropdown.classList.add("d-none");
+      }
+    });
+    // Thêm vào giỏ hàng và hiển thị thông báo
+    document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        const productName = this.getAttribute('data-name');
+        const productPrice = parseInt(this.getAttribute('data-price'));
+        const productImage = this.getAttribute('data-image');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProduct = cart.find(item => item.name === productName);
+        if (existingProduct) {
+          existingProduct.quantity += 1;
+        } else {
+          const product = {
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
+          };
+          cart.push(product);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showToast(`${productName} đã được thêm vào giỏ hàng!`);
+      });
+    });
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessageText = document.getElementById('toastMessageText');
+      toastMessageText.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    // Xử lý nút "Mua ngay"
+    document.querySelectorAll('.product-card-footer a:last-child').forEach(button => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        const cardFooter = this.closest('.product-card-footer');
+        const addToCartBtn = cardFooter.querySelector('.btn-add-to-cart');
+        const productName = addToCartBtn.getAttribute('data-name');
+        const productPrice = parseInt(addToCartBtn.getAttribute('data-price'));
+        const productImage = addToCartBtn.getAttribute('data-image');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProduct = cart.find(item => item.name === productName);
+        if (existingProduct) {
+          existingProduct.quantity += 1;
+        } else {
+          cart.push({
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
+          });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.location.href = '../HTML/cart.html';
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const sortSelect = document.getElementById("sortSelect");
+      const productContainer = document.querySelector(".row.row-cols-1");
+      const parsePrice = (priceStr) => parseInt(priceStr.replace(/[^0-9]/g, ""), 10);
+      sortSelect.addEventListener("change", function () {
+        const products = Array.from(productContainer.children);
+        const sortValue = sortSelect.value;
+        products.sort((a, b) => {
+          const nameA = a.querySelector(".card-title").textContent.trim();
+          const nameB = b.querySelector(".card-title").textContent.trim();
+          const priceA = parsePrice(a.querySelector(".product-card-footer span").textContent);
+          const priceB = parsePrice(b.querySelector(".product-card-footer span").textContent);
+          switch (sortValue) {
+            case "name-asc":
+              return nameA.localeCompare(nameB);
+            case "name-desc":
+              return nameB.localeCompare(nameA);
+            case "price-asc":
+              return priceA - priceB;
+            case "price-desc":
+              return priceB - priceA;
+            default:
+              return 0;
+          }
+        });
+
+        products.forEach(p => productContainer.appendChild(p));
+      });
+    });
+    const productsPerPage = 12;
+    const productCards = document.querySelectorAll('#productContainer .product-card-wrapper');
+    const totalPages = Math.ceil(productCards.length / productsPerPage);
+    const paginationContainer = document.getElementById('pagination');
+    let currentPage = 1;
+    function showPage(page) {
+      currentPage = page;
+      productCards.forEach((card, index) => {
+        card.style.display = (index >= (page - 1) * productsPerPage && index < page * productsPerPage)
+          ? 'block'
+          : 'none';
+      });
+      updatePagination();
+    }
+    function updatePagination() {
+      paginationContainer.innerHTML = '';
+
+      const prevLi = document.createElement('li');
+      prevLi.className = 'page-item' + (currentPage === 1 ? ' disabled' : '');
+      const prevLink = document.createElement('a');
+      prevLink.className = 'page-link';
+      prevLink.href = '#';
+      prevLink.innerHTML = '&laquo;';
+      prevLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage > 1) showPage(currentPage - 1);
+      });
+      prevLi.appendChild(prevLink);
+      paginationContainer.appendChild(prevLi);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = 'page-item' + (i === currentPage ? ' active' : '');
+        const a = document.createElement('a');
+        a.className = 'page-link';
+        a.href = '#';
+        a.textContent = i;
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          showPage(i);
+        });
+        li.appendChild(a);
+        paginationContainer.appendChild(li);
+      }
+      const nextLi = document.createElement('li');
+      nextLi.className = 'page-item' + (currentPage === totalPages ? ' disabled' : '');
+      const nextLink = document.createElement('a');
+      nextLink.className = 'page-link';
+      nextLink.href = '#';
+      nextLink.innerHTML = '&raquo;';
+      nextLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage < totalPages) showPage(currentPage + 1);
+      });
+      nextLi.appendChild(nextLink);
+      paginationContainer.appendChild(nextLi);
+    }
+    if (productCards.length > 0) {
+      showPage(1);
+    }
+    const toggleButton = document.getElementById("toggleInfoButton");
+    const infoBoxes = document.querySelectorAll(".info-box");
+    let isExpanded = false;
+
+    // Khi bấm nút
+    toggleButton.addEventListener("click", function () {
+      isExpanded = !isExpanded;
+
+      infoBoxes.forEach((box, index) => {
+        if (isExpanded) {
+          box.classList.add("visible");
+        } else {
+          // Chỉ hiển thị box đầu tiên
+          if (index === 0) {
+            box.classList.add("visible");
+          } else {
+            box.classList.remove("visible");
+          }
+        }
+      });
+
+      toggleButton.textContent = isExpanded ? "Thu gọn" : "Xem thêm";
+    });
+
+    // Khi load trang nếu nhỏ hơn 500px, chỉ hiện box đầu
+    window.addEventListener("load", () => {
+      if (window.innerWidth <= 500) {
+        infoBoxes.forEach((box, index) => {
+          if (index === 0) {
+            box.classList.add("visible");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
