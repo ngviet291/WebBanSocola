@@ -37,6 +37,7 @@ toggleText.addEventListener("click", function (e) {
     addressGroup.classList.toggle("d-none", isLogin);
     emailOrUsernameGroup.classList.toggle("d-none", !isLogin);
     document.getElementById("forgotPasswordGroup").style.display = isLogin ? "block" : "none";
+    document.getElementById("termsGroup").classList.toggle("d-none", isLogin);
     document.getElementById("rememberMeGroup").style.display = isLogin ? "block" : "none";
     if (!isLogin) {
       const emailOrUsernameValue = document.getElementById("emailOrUsername").value.trim();

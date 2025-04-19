@@ -205,3 +205,10 @@ body {
     text-align: center;
     margin-top: auto;
   }
+  #privacy-policy {
+    scroll-margin-top: 100px;
+  }
+  #return-policy {
+    scroll-margin-top: 100px;
+  }
+  
