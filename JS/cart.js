@@ -1,34 +1,50 @@
+const toggleSearch = document.getElementById("toggleSearch");
+const searchDropdown = document.getElementById("searchDropdown");
+const searchBox = document.getElementById("searchBox");
+
+toggleSearch.addEventListener("click", function (e) {
+  e.preventDefault();
+  searchDropdown.classList.toggle("d-none");
+  if (!searchDropdown.classList.contains("d-none")) {
+    searchBox.focus();
+  }
+});
+document.addEventListener("click", function (e) {
+  if (!searchDropdown.contains(e.target) && !toggleSearch.contains(e.target)) {
+    searchDropdown.classList.add("d-none");
+  }
+});
 function renderCart() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartContainer = document.getElementById('cart-items-container');
-    const totalAmount = document.getElementById('totalAmount');
-    const checkoutRow = document.getElementById('checkoutRow');
-    const emptyCartMessage = document.getElementById('emptyCartMessage');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartContainer = document.getElementById('cart-items-container');
+  const totalAmount = document.getElementById('totalAmount');
+  const checkoutRow = document.getElementById('checkoutRow');
+  const emptyCartMessage = document.getElementById('emptyCartMessage');
 
-    cartContainer.innerHTML = '';
+  cartContainer.innerHTML = '';
 
-    if (cart.length === 0) {
-      emptyCartMessage.classList.remove('d-none');
-      checkoutRow.classList.add('d-none');
-      totalAmount.textContent = '0 VND';
-      document.getElementById('modalTotalAmount').textContent = 'Tổng tiền: 0 VND';
-      document.getElementById('cart-table').classList.add('d-none');
-      return;
-    }
+  if (cart.length === 0) {
+    emptyCartMessage.classList.remove('d-none');
+    checkoutRow.classList.add('d-none');
+    totalAmount.textContent = '0 VND';
+    document.getElementById('modalTotalAmount').textContent = 'Tổng tiền: 0 VND';
+    document.getElementById('cart-table').classList.add('d-none');
+    return;
+  }
 
-    emptyCartMessage.classList.add('d-none');
-    checkoutRow.classList.remove('d-none');
-    document.getElementById('cart-table').classList.remove('d-none');
+  emptyCartMessage.classList.add('d-none');
+  checkoutRow.classList.remove('d-none');
+  document.getElementById('cart-table').classList.remove('d-none');
 
-    let totalPrice = 0;
+  let totalPrice = 0;
 
-    cart.forEach((item, index) => {
-      const itemTotal = item.price * item.quantity;
-      totalPrice += itemTotal;
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.quantity;
+    totalPrice += itemTotal;
 
-      const row = document.createElement('tr');
-      row.classList.add('align-middle', 'text-center');
-      row.innerHTML = `
+    const row = document.createElement('tr');
+    row.classList.add('align-middle', 'text-center');
+    row.innerHTML = `
     <td>${index + 1}</td>
     <td>
       <img src="${item.image}" alt="${item.name}" class="img-fluid rounded" 
@@ -45,109 +61,109 @@ function renderCart() {
       <button class="btn btn-danger btn-sm btn-delete" data-index="${index}">Xóa</button>
     </td>
   `;
-      cartContainer.appendChild(row);
-    });
-
-    totalAmount.textContent = `${totalPrice.toLocaleString()} VND`;
-    document.getElementById('modalTotalAmount').textContent = `Tổng tiền: ${totalPrice.toLocaleString()} VND`;
-
-    document.querySelectorAll('.btn-delete').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const index = this.getAttribute('data-index');
-        const confirmed = confirm("Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?");
-        if (confirmed) {
-          cart.splice(index, 1);
-          localStorage.setItem('cart', JSON.stringify(cart));
-          renderCart();
-        }
-      });
-    });
-
-
-    document.querySelectorAll('.quantity-input').forEach(input => {
-      input.addEventListener('change', function () {
-        const index = this.getAttribute('data-index');
-        const newQty = parseInt(this.value);
-        if (newQty >= 1 && newQty <= 10) {
-          cart[index].quantity = newQty;
-          localStorage.setItem('cart', JSON.stringify(cart));
-          renderCart();
-        }
-      });
-    });
-  }
-
-  document.getElementById('clearCartBtn').addEventListener('click', function () {
-    if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")) {
-      localStorage.removeItem('cart');
-      renderCart();
-    }
+    cartContainer.appendChild(row);
   });
-  function saveOrderHistory(orderDetails) {
-    const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
-    orderHistory.push(orderDetails);
-    localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
-  }
 
-  const checkoutForm = document.getElementById('checkoutForm');
-  checkoutForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  totalAmount.textContent = `${totalPrice.toLocaleString()} VND`;
+  document.getElementById('modalTotalAmount').textContent = `Tổng tiền: ${totalPrice.toLocaleString()} VND`;
 
-    if (cart.length === 0) {
-      alert("Giỏ hàng của bạn hiện tại trống. Vui lòng thêm sản phẩm vào giỏ.");
-      return;
-    }
-    const customerName = document.getElementById('checkoutName').value;
-    const customerEmail = document.getElementById('checkoutEmail').value;
-    const customerPhone = document.getElementById('checkoutPhone').value;
-    let totalAmount = 0;
-    cart.forEach(item => {
-      totalAmount += item.price * item.quantity;
-    });
-    const orderDetails = {
-      customerName,
-      customerEmail,
-      customerPhone,
-      items: cart,
-      totalAmount,
-      date: new Date().toLocaleString()
-    };
-    saveOrderHistory(orderDetails);
-    alert("Cảm ơn bạn đã đặt hàng! Chúng tôi sẽ liên hệ với bạn sớm.");
-    localStorage.removeItem('cart');
-    renderCart();
-    const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
-    modal.hide();
-    checkoutForm.reset();
-  });
-  document.addEventListener('DOMContentLoaded', renderCart);
-  const toggleButton = document.getElementById("toggleInfoButton");
-  const infoBoxes = document.querySelectorAll(".info-box");
-  let isExpanded = false;
-  toggleButton.addEventListener("click", function () {
-    isExpanded = !isExpanded;
-
-    infoBoxes.forEach((box, index) => {
-      if (isExpanded) {
-        box.classList.add("visible");
-      } else {
-        if (index === 0) {
-          box.classList.add("visible");
-        } else {
-          box.classList.remove("visible");
-        }
+  document.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const index = this.getAttribute('data-index');
+      const confirmed = confirm("Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?");
+      if (confirmed) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
       }
     });
-
-    toggleButton.textContent = isExpanded ? "Thu gọn" : "Xem thêm";
   });
-  window.addEventListener("load", () => {
-    if (window.innerWidth <= 500) {
-      infoBoxes.forEach((box, index) => {
-        if (index === 0) {
-          box.classList.add("visible");
-        }
-      });
+
+
+  document.querySelectorAll('.quantity-input').forEach(input => {
+    input.addEventListener('change', function () {
+      const index = this.getAttribute('data-index');
+      const newQty = parseInt(this.value);
+      if (newQty >= 1 && newQty <= 10) {
+        cart[index].quantity = newQty;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    });
+  });
+}
+
+document.getElementById('clearCartBtn').addEventListener('click', function () {
+  if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")) {
+    localStorage.removeItem('cart');
+    renderCart();
+  }
+});
+function saveOrderHistory(orderDetails) {
+  const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+  orderHistory.push(orderDetails);
+  localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+}
+
+const checkoutForm = document.getElementById('checkoutForm');
+checkoutForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cart.length === 0) {
+    alert("Giỏ hàng của bạn hiện tại trống. Vui lòng thêm sản phẩm vào giỏ.");
+    return;
+  }
+  const customerName = document.getElementById('checkoutName').value;
+  const customerEmail = document.getElementById('checkoutEmail').value;
+  const customerPhone = document.getElementById('checkoutPhone').value;
+  let totalAmount = 0;
+  cart.forEach(item => {
+    totalAmount += item.price * item.quantity;
+  });
+  const orderDetails = {
+    customerName,
+    customerEmail,
+    customerPhone,
+    items: cart,
+    totalAmount,
+    date: new Date().toLocaleString()
+  };
+  saveOrderHistory(orderDetails);
+  alert("Cảm ơn bạn đã đặt hàng! Chúng tôi sẽ liên hệ với bạn sớm.");
+  localStorage.removeItem('cart');
+  renderCart();
+  const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+  modal.hide();
+  checkoutForm.reset();
+});
+document.addEventListener('DOMContentLoaded', renderCart);
+const toggleButton = document.getElementById("toggleInfoButton");
+const infoBoxes = document.querySelectorAll(".info-box");
+let isExpanded = false;
+toggleButton.addEventListener("click", function () {
+  isExpanded = !isExpanded;
+
+  infoBoxes.forEach((box, index) => {
+    if (isExpanded) {
+      box.classList.add("visible");
+    } else {
+      if (index === 0) {
+        box.classList.add("visible");
+      } else {
+        box.classList.remove("visible");
+      }
     }
   });
+
+  toggleButton.textContent = isExpanded ? "Thu gọn" : "Xem thêm";
+});
+window.addEventListener("load", () => {
+  if (window.innerWidth <= 500) {
+    infoBoxes.forEach((box, index) => {
+      if (index === 0) {
+        box.classList.add("visible");
+      }
+    });
+  }
+});

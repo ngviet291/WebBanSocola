@@ -61,7 +61,7 @@ body {
       margin-top: 30px;
     }
 
-    .intro-content h3 {
+    .intro-content h2 {
       color: #3e2b2b;
     }
 
@@ -93,9 +93,8 @@ body {
     margin-bottom: 15px;
   }
 
-  .team-member h4 {
+  .team-member h1 {
     color: #3e2b2b;
-    font-size: 24px;
   }
 
   .team-member p {

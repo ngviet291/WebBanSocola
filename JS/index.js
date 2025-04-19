@@ -14,45 +14,6 @@ document.addEventListener("click", function (e) {
         searchDropdown.classList.add("d-none");
     }
 });
-// Dữ liệu về sản phẩm
-const chocolateData = {
-    small: {
-        name: "Chocolate Ferrero Rocher Loại Nhỏ",
-        image: "../IMG/scl1.jpg",
-        price: 140000,
-    },
-    medium: {
-        name: "Chocolate Ferrero Rocher Loại Vừa",
-        image: "../IMG/scl1.jpg",
-        price: 150000,
-    },
-    large: {
-        name: "Chocolate Ferrero Rocher Loại Lớn",
-        image: "../IMG/scl1.jpg",
-        price: 160000,
-    }
-};
-function changeChocolateType(type) {
-    const chocolate = chocolateData[type];
-    document.getElementById("product-name").textContent = chocolate.name;
-    document.getElementById("product-image").src = chocolate.image;
-    document.getElementById("product-price").textContent = chocolate.price.toLocaleString() + "đ";
-    const addToCartButton = document.querySelector(".btn-add-to-cart");
-    const buyNowButton = document.querySelector(".btn-danger");
-
-    addToCartButton.setAttribute("data-name", chocolate.name);
-    addToCartButton.setAttribute("data-image", chocolate.image);
-    addToCartButton.setAttribute("data-price", chocolate.price);
-
-    buyNowButton.setAttribute("data-name", chocolate.name);
-    buyNowButton.setAttribute("data-image", chocolate.image);
-    buyNowButton.setAttribute("data-price", chocolate.price);
-}
-document.getElementById("chocolateType").addEventListener("change", function () {
-    const selectedType = this.value;
-    changeChocolateType(selectedType);
-});
-changeChocolateType("small");
 document.querySelectorAll('.btn-add-to-cart').forEach(button => {
     button.addEventListener('click', function (e) {
         e.preventDefault();
@@ -85,29 +46,31 @@ function showToast(message) {
         toast.classList.remove('show');
     }, 3000);
 }
-document.querySelectorAll('.product-card-footer a:last-child').forEach(button => {
-    button.addEventListener('click', function (e) {
-        e.preventDefault();
-        const cardFooter = this.closest('.product-card-footer');
-        const addToCartBtn = cardFooter.querySelector('.btn-add-to-cart');
-        const productName = addToCartBtn.getAttribute('data-name');
-        const productPrice = parseInt(addToCartBtn.getAttribute('data-price'));
-        const productImage = addToCartBtn.getAttribute('data-image');
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingProduct = cart.find(item => item.name === productName);
-        if (existingProduct) {
-            existingProduct.quantity += 1;
-        } else {
-            cart.push({
-                name: productName,
-                price: productPrice,
-                image: productImage,
-                quantity: 1
-            });
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        window.location.href = '../HTML/cart.html';
-    });
+
+document.querySelectorAll('.product-card').forEach(card => {
+    const product = {
+        id: card.dataset.id,
+        name: card.dataset.name,
+        price: parseInt(card.dataset.price)
+    };
+
+    const buttons = card.querySelectorAll('.product-buttons a');
+    if (buttons.length >= 2) {
+        const addToCartBtn = buttons[0];
+        const buyNowBtn = buttons[1];
+
+        addToCartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            addToCart(product);
+            showToast(`Đã thêm "${product.name}" vào giỏ hàng`);
+        });
+
+        buyNowBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            addToCart(product);
+            window.location.href = 'cart.html';
+        });
+    }
 });
 const toggleButton = document.getElementById("toggleInfoButton");
 const infoBoxes = document.querySelectorAll(".info-box");
