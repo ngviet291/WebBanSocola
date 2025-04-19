@@ -6,255 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Liên Hệ</title>
   <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="../CSS/contact.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <script src="../JS/bootstrap.bundle.min.js"></script>
-  <style>
-    body {
-      background-color: #f8f9fa;
-      font-family: 'Times New Roman', Times, serif;
-    }
-
-    .navbar-nav .nav-link {
-      margin-left: 15px;
-      margin-right: 15px;
-      color: black;
-    }
-
-    .nav-link.active {
-      text-decoration: underline;
-      color: #c23e2e !important;
-    }
-
-    .d-flex {
-      gap: 20px;
-    }
-
-    .d-flex a:hover {
-      color: orange;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: orange;
-    }
-
-    .contact {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-header {
-      background-color: #f4e3c1;
-      padding: 30px;
-      text-align: center;
-    }
-
-    .contact-header h2 {
-      color: #4f2b3d;
-      margin-top: 15px;
-    }
-
-    .contact-header p {
-      color: #555;
-    }
-
-    .contact-form {
-      background-color: #f8f9fa;
-      padding: 30px;
-      border-radius: 8px;
-    }
-
-    .contact-form .form-control {
-      margin-bottom: 15px;
-    }
-
-    .contact-info {
-      margin-top: 30px;
-      background-color: #f8f9fa;
-      padding: 30px;
-      border-radius: 8px;
-    }
-
-    .contact-info h4 {
-      color: #3e2b2b;
-    }
-
-    .contact-info .social-links a {
-      margin-right: 15px;
-      font-size: 20px;
-      color: #3e2b2b;
-    }
-
-    .btn-brown {
-      color: white;
-      background-color: #6f4f28;
-      border-color: #6f4f28;
-    }
-
-    .btn-brown:hover {
-      background-color: #8e7b5b;
-      border-color: #8e7b5b;
-    }
-
-    .map-container {
-      margin-top: 30px;
-    }
-
-    .info-section {
-      background-color: #f4e3c1 !important;
-      padding-top: 30px;
-      padding-bottom: 10px;
-    }
-
-    section h2 {
-      font-size: 36px;
-      color: #3e2b2b;
-      font-weight: bold;
-    }
-
-    .info-section h3 {
-      font-size: 18px;
-      color: #3e2b2b;
-      font-weight: bold;
-    }
-
-    .info-section p {
-      font-size: 15px;
-      color: #555;
-    }
-
-    .info-section a {
-      color: #3e2b2b;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .info-section a:hover {
-      text-decoration: underline;
-    }
-
-    .info-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 30px;
-    }
-
-    .info-box {
-      flex: 1;
-    }
-
-    .info-box h3 {
-      margin-bottom: 10px;
-    }
-
-    .info-box p {
-      margin-bottom: 15px;
-    }
-
-    .text-brown {
-      color: #6f4f28;
-    }
-
-    .text-brown:hover {
-      color: black !important;
-    }
-
-    .description-section h3 {
-      font-size: 36px;
-      color: #3e2b2b;
-      font-weight: bold;
-    }
-
-    .description-section p {
-      font-size: 20px;
-      color: #555;
-      margin-top: 10px;
-    }
-
-    .description-section .d-flex {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .description-section .d-flex img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .description-section .d-flex div {
-      flex: 1;
-    }
-
-    .map iframe {
-      border-radius: 10px;
-    }
-
-    #toggleInfoButton {
-      display: none;
-      margin: 20px auto;
-      background-color: #633d1e;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    @media (max-width:500px) {
-      .info-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        padding: 0 20px;
-      }
-
-      .nav-link i {
-        margin-left: 30px;
-      }
-
-      .info-box {
-        display: none;
-      }
-
-      .info-box.visible {
-        display: block;
-      }
-
-      #toggleInfoButton {
-        display: block;
-      }
-
-      .map {
-        width: 100%;
-        margin: 0 auto;
-        margin-bottom: 100px;
-      }
-
-      .map iframe {
-        height: 100px;
-      }
-
-      .contact-info {
-        margin-top: 100px !important;
-      }
-    }
-
-    .footer {
-      background-color: #3e2b2b;
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-    }
-  </style>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <a class="navbar-brand d-flex align-items-center w-25" href="../HTML/home.html">
+    <a class="navbar-brand d-flex align-items-center w-25" href="../index.html">
       <img class="ms-5 w-25" src="../IMG/logo-removebg-preview.png" alt="Logo">
       <span>FEAT CHOCOLATE</span>
     </a>
@@ -265,7 +24,16 @@
       <ul class="navbar-nav">
         <div class="navbar-nav d-flex justify-content-center">
           <li class="nav-item"><a class="nav-link" href="../index.html">Trang chủ</a></li>
-          <li class="nav-item"><a class="nav-link" href="../HTML/product.html">Sản phẩm</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="../HTML/product.html" id="productDropdown" role="button">
+              Sản phẩm
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="productDropdown">
+              <li><a class="dropdown-item" href="../HTML/product.html">Sản phẩm socola</a></li>
+              <li><a class="dropdown-item" href="../HTML/productnew.html">Sản phẩm mới</a></li>
+              <li><a class="dropdown-item" href="../HTML/productfav.html">Sản phẩm yêu thích</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a class="nav-link" href="../HTML/introduction.html">Giới thiệu</a></li>
           <li class="nav-item"><a class="nav-link active" href="../HTML/contact.html">Liên hệ</a></li>
         </div>
@@ -289,12 +57,13 @@
           <input type="text" id="searchBox" class="form-control" placeholder="Tìm sản phẩm...">
         </div>
       </div>
-      <a class="nav-link" href="../HTML/profile.html" id="personalLink" style="display: block;">
+      <a class="nav-link" href="../HTML/profile.html" id="profileLink" style="display: block;">
         <i class="bi bi-person"></i>
       </a>
       <a class="nav-link" href="../HTML/cart.html"><i class="bi bi-cart"></i></a>
       <a class="nav-link" href="#" id="loginSignupLink" style="display: block;"
-        onclick="window.location.href = '../HTML/loginandregister.html';"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập
+        onclick="window.location.href = '../HTML/loginandregister.html';"><i class="bi bi-box-arrow-in-right"></i> Đăng
+        nhập
         / Đăng ký</a>
     </div>
   </nav>
@@ -346,17 +115,16 @@
       <!-- Thông tin liên hệ -->
       <div class="contact-info mt-4">
         <h4>Thông Tin Liên Hệ</h4>
-        <p>Địa chỉ: 123 Đường ABC, Hà Nội, Việt Nam</p>
-        <p><strong>Số điện thoại:</strong> <a href="tel:+84987654321">+84 987 654 321</a></p>
-        <p><strong>Email:</strong> <a href="mailto:contact@featchocolate.com">contact@featchocolate.com</a></p>
-        <p><strong>Facebook:</strong> <a href="https://www.facebook.com/featchocolate" target="_blank">FEAT Chocolate
-            Facebook</a></p>
-        <p><strong>Zalo:</strong> <a href="https://zalo.me/987654321" target="_blank">Zalo: +84 987 654 321</a></p>
+        <p>Địa chỉ: Số 12 Nguyễn Văn Bảo, Phường 1, Quận Gò Vấp, Thành phố Hồ Chí Minh</p>
+        <p><strong>Số điện thoại:</strong> <a href="tel:+0123456789"> 0123 456 789</a></p>
+        <p><strong>Email:</strong> <a href="mailto:vietnguyen29105@feat-chocolate.com">vietnguyen29105@feat-chocolate.com</a></p>
+        <p><strong>Facebook:</strong> <a href="https://www.facebook.com/ngviet29105" target="_blank">FEAT Chocolate</a></p>
+        <p><strong>Zalo:</strong> <a href="https://zalo.me/987654321" target="_blank">+84 987 654 321</a></p>
 
         <div class="social-links mt-3">
-          <a href="https://www.facebook.com/featchocolate" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.facebook.com/ngviet29105" target="_blank"><i class="bi bi-facebook"></i></a>
           <a href="https://zalo.me/987654321" target="_blank"><i class="bi bi-chat-left-text"></i></a>
-          <a href="tel:+84987654321"><i class="bi bi-telephone"></i></a>
+          <a href="tel:+0123456789"><i class="bi bi-telephone"></i></a>
         </div>
       </div>
       <section class="info-section">
@@ -402,58 +170,7 @@
     <p>&copy; 2025 FEAT Chocolate. All rights reserved.</p>
   </footer>
 
-  <script>
-    const toggleSearch = document.getElementById("toggleSearch");
-    const searchDropdown = document.getElementById("searchDropdown");
-    const searchBox = document.getElementById("searchBox");
-
-    toggleSearch.addEventListener("click", function (e) {
-      e.preventDefault();
-      searchDropdown.classList.toggle("d-none");
-      if (!searchDropdown.classList.contains("d-none")) {
-        searchBox.focus();
-      }
-    });
-    document.addEventListener("click", function (e) {
-      if (!searchDropdown.contains(e.target) && !toggleSearch.contains(e.target)) {
-        searchDropdown.classList.add("d-none");
-      }
-    });
-    const toggleButton = document.getElementById("toggleInfoButton");
-    const infoBoxes = document.querySelectorAll(".info-box");
-    let isExpanded = false;
-
-    // Khi bấm nút
-    toggleButton.addEventListener("click", function () {
-      isExpanded = !isExpanded;
-
-      infoBoxes.forEach((box, index) => {
-        if (isExpanded) {
-          box.classList.add("visible");
-        } else {
-          // Chỉ hiển thị box đầu tiên
-          if (index === 0) {
-            box.classList.add("visible");
-          } else {
-            box.classList.remove("visible");
-          }
-        }
-      });
-
-      toggleButton.textContent = isExpanded ? "Thu gọn" : "Xem thêm";
-    });
-
-    // Khi load trang nếu nhỏ hơn 500px, chỉ hiện box đầu
-    window.addEventListener("load", () => {
-      if (window.innerWidth <= 500) {
-        infoBoxes.forEach((box, index) => {
-          if (index === 0) {
-            box.classList.add("visible");
-          }
-        });
-      }
-    });
-  </script>
+  <script src="../JS/contact.js"></script>
 </body>
 
 </html>

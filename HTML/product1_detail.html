@@ -6,363 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chi tiết sản phẩm</title>
     <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../CSS/product_detail.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="../JS/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .navbar-nav .nav-link {
-            margin-left: 15px;
-            margin-right: 15px;
-            color: black;
-        }
-
-        .nav-link.active {
-            text-decoration: underline;
-            color: #c23e2e !important;
-        }
-
-        .d-flex {
-            gap: 20px;
-        }
-
-        .d-flex a:hover {
-            color: orange;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: orange;
-        }
-
-        .intro-header {
-            background-color: #f4e3c1;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .intro-header h2 {
-            color: #4f2b3d;
-            margin-top: 15px;
-        }
-
-        .intro-header p {
-            color: #555;
-        }
-
-        .product-detail {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-detail img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-
-        .product-title {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #4f2b3d;
-        }
-
-        .product-price {
-            color: #c23e2e;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .product-description {
-            margin-top: 20px;
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .quantity-input {
-            width: 80px;
-            text-align: center;
-        }
-
-        .action-buttons a {
-            background-color: #4f2b3d;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .action-buttons a:hover {
-            background-color: black;
-        }
-
-        .recommended-products {
-            margin-top: 60px;
-        }
-
-        .recommended-products h3 {
-            font-weight: bold;
-            color: #3e2b2b;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.1);
-        }
-
-        .product-card-body {
-            padding: 15px;
-        }
-
-        .product-card-body h5 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #4f2b3d;
-        }
-
-        .product-card-body p {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-
-        .product-card:hover .product-img,
-        .product-card:hover .product-card-body {
-            opacity: 0.3;
-            transform: scale(1.05);
-        }
-
-        .product-card:hover .product-buttons {
-            opacity: 1;
-        }
-
-        .product-buttons {
-            opacity: 0;
-            position: absolute;
-            bottom: 140px;
-            left: 10%;
-            gap: 10px;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            z-index: 2;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .overlay {
-            top: 40%;
-        }
-
-        .product-card:hover .overlay {
-            opacity: 1;
-        }
-
-        .view-details {
-            font-size: 0.9rem;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background-color: #fff;
-            color: #4f2b3d;
-            border: 1px solid #4f2b3d;
-            text-decoration: none;
-        }
-
-        .view-details:hover {
-            background-color: #4f2b3d;
-            color: white;
-        }
-
-
-
-        .product-buttons a {
-            text-decoration: none;
-            background-color: #4f2b3d;
-            color: #fff;
-            padding: 7px 7px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .product-buttons a:hover {
-            background-color: black;
-        }
-
-        #product-card-footer-price {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 10px;
-            gap: 10px;
-            background-color: #f1f1f1;
-        }
-
-        #product-card-footer-price span {
-            font-weight: 600;
-            font-size: 18px;
-            color: #4f2b3d;
-        }
-
-        .info-section {
-            background-color: #f4e3c1 !important;
-            padding-top: 20px;
-            margin-top: 30px;
-        }
-
-        section h2 {
-            font-size: 36px;
-            color: #3e2b2b;
-            font-weight: bold;
-        }
-
-        .info-section h3 {
-            font-size: 18px;
-            color: #3e2b2b;
-            font-weight: bold;
-        }
-
-        .info-section p {
-            font-size: 15px;
-            color: #555;
-        }
-
-        .info-section a {
-            color: #3e2b2b;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .info-section a:hover {
-            text-decoration: underline;
-        }
-
-        .info-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 30px;
-        }
-
-        .info-box {
-            flex: 1;
-        }
-
-        .info-box h3 {
-            margin-bottom: 10px;
-        }
-
-        .info-box p {
-            margin-bottom: 15px;
-        }
-
-        .text-brown {
-            color: #6f4f28;
-        }
-
-        .text-brown:hover {
-            color: black !important;
-        }
-
-        .toast-container {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            z-index: 1050;
-        }
-
-        .toast {
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-weight: bold;
-            display: none;
-            position: relative;
-        }
-
-        .toast.show {
-            display: block;
-        }
-
-        .footer {
-            background-color: #3e2b2b;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .footer p {
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        #toggleInfoButton {
-            display: none;
-            margin: 20px auto;
-            background-color: #633d1e;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        @media (max-width:500px) {
-            .info-content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
-                padding: 0 20px;
-            }
-
-            .nav-link i {
-                margin-left: 30px;
-            }
-
-            .info-box {
-                display: none;
-            }
-
-            .info-box.visible {
-                display: block;
-            }
-
-            #toggleInfoButton {
-                display: block;
-            }
-
-            .map {
-                width: 100%;
-                margin: 0 auto;
-                margin-bottom: 100px;
-            }
-
-            .map iframe {
-                height: 100px;
-            }
-        }
-    </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand d-flex align-items-center w-25" href="../HTML/home.html">
+        <a class="navbar-brand d-flex align-items-center w-25" href="../index.html">
             <img class="ms-5 w-25" src="../IMG/logo-removebg-preview.png" alt="Logo">
             <span>FEAT CHOCOLATE</span>
         </a>
@@ -372,8 +23,18 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <div class="navbar-nav d-flex justify-content-center">
-                    <li class="nav-item"><a class="nav-link" href="../HTML/home.html">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="../HTML/product.html">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Trang chủ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="../HTML/product.html" id="productDropdown"
+                            role="button">
+                            Sản phẩm
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                            <li><a class="dropdown-item" href="../HTML/product.html">Sản phẩm socola</a></li>
+                            <li><a class="dropdown-item" href="../HTML/productnew.html">Sản phẩm mới</a></li>
+                            <li><a class="dropdown-item" href="../HTML/productfav.html">Sản phẩm yêu thích</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="../HTML/introduction.html">Giới thiệu</a></li>
                     <li class="nav-item"><a class="nav-link" href="../HTML/contact.html">Liên hệ</a></li>
                 </div>
@@ -397,12 +58,13 @@
                     <input type="text" id="searchBox" class="form-control" placeholder="Tìm sản phẩm...">
                 </div>
             </div>
-            <a class="nav-link" href="../HTML/personal.html" id="personalLink" style="display: block;">
+            <a class="nav-link" href="../HTML/profile.html" id="profileLink" style="display: block;">
                 <i class="bi bi-person"></i>
             </a>
             <a class="nav-link" href="../HTML/cart.html"><i class="bi bi-cart"></i></a>
             <a class="nav-link" href="#" id="loginSignupLink" style="display: block;"
-                onclick="window.location.href = '../HTML/loginandres.html';"><i class="bi bi-box-arrow-in-right"></i>
+                onclick="window.location.href = '../HTML/loginandregister.html';"><i
+                    class="bi bi-box-arrow-in-right"></i>
                 Đăng nhập
                 / Đăng ký</a>
         </div>
@@ -415,43 +77,36 @@
         <div class="row">
             <div class="col-md-6" style="padding-top: 30px;padding-left: 30px; padding-right: 30px;">
                 <div class="border rounded p-3" style="width: 100%; max-width: 500px; height: 400px;">
-                    <img id="product-image" src="../IMG/socola1.png" class="img-fluid h-100 w-100" alt="Chocolate"
+                    <img id="product-image" src="../IMG/scl1.jpg" class="img-fluid h-100 w-100" alt="Chocolate"
                         style="object-fit: contain; border-radius: 10px;" />
                 </div>
             </div>
             <div class="col-md-6" style="padding-top: 30px;padding-left: 30px; padding-right: 30px;">
-                <h2 id="product-name" class="card-title">Chocolate Dark 70%</h2>
+                <h2 id="product-name" class="card-title">Chocolate Ferrero Rocher</h2>
                 <p class="text-muted">Mã sản phẩm: CHO001</p>
-                <h4 class="text-danger mb-3">140.000đ</h4>
+                <h4 id="product-price" class="text-danger mb-3">140.000đ</h4>
 
                 <p class="card-text">
-                    Chocolate đen nguyên chất, hương vị đậm đà, tuyệt vời cho những ai yêu thích sự mạnh mẽ của socola
-                    đen.
+                    Vị socola hảo hạng kết hợp cùng hạt dẻ giòn tan.
                 </p>
-
-                <!-- Loại socola -->
                 <div class="mb-3">
                     <label for="chocolateType" class="form-label fw-bold">Loại socola:</label>
                     <select id="chocolateType" class="form-select w-50">
-                        <option value="dark">Đen 70%</option>
-                        <option value="milk">Sữa</option>
-                        <option value="white">Trắng</option>
+                        <option value="small">Nhỏ</option>
+                        <option value="medium">Vừa</option>
+                        <option value="large">Lớn</option>
                     </select>
                 </div>
-
-                <!-- Số lượng -->
                 <div class="mb-3">
                     <label for="quantity" class="form-label fw-bold">Số lượng:</label>
                     <input type="number" id="quantity" class="form-control w-25" value="1" min="1">
                 </div>
-
-                <!-- Nút hành động -->
                 <div class="product-card-footer">
-                    <a href="#" class="btn btn-primary btn-add-to-cart" data-name="Chocolate Dark 70%"
-                        data-price="140000" data-image="../IMG/socola1.png">Thêm vào giỏ hàng</a>
+                    <a href="#" class="btn btn-primary btn-add-to-cart" data-name="Chocolate Ferrero Rocher"
+                        data-price="140000" data-image="../IMG/scl1.jpg">Thêm vào giỏ hàng</a>
 
-                    <a href="#" class="btn btn-danger" data-name="Chocolate Dark 70%" data-price="140000"
-                        data-image="../IMG/socola1.png">Mua ngay</a>
+                    <a href="#" class="btn btn-danger" data-name="Chocolate Ferrero Rocher" data-price="140000"
+                        data-image="../IMG/scl1.jpg">Mua ngay</a>
                 </div>
 
             </div>
@@ -463,35 +118,35 @@
             <div class="card-body">
                 <h5>Thành phần:</h5>
                 <p>
-                    Bột cacao nguyên chất (70%), đường mía, bơ cacao. Không chất bảo quản, không phẩm màu nhân tạo.
+                    Sô cô la sữa (đường, bơ cacao, sữa bột, ca cao khối, lecithin đậu nành, vanillin tự nhiên), hạt phỉ, dầu cọ, bột mì, đường, whey (sữa), bột cacao ít béo, chất tạo xốp (natri bicarbonate), muối.
                 </p>
 
                 <h5>Hương vị:</h5>
                 <p>
-                    Vị đắng đặc trưng của chocolate đen, hậu vị kéo dài và nhẹ nhàng tan dần trong miệng.
+                    Lớp sô cô la sữa ngọt ngào kết hợp nhân kem béo, bánh xốp giòn và hạt phỉ rang thơm lừng.
                 </p>
 
                 <h5>Cách sử dụng:</h5>
                 <p>
-                    Sử dụng trực tiếp, dùng làm nguyên liệu trong làm bánh, hoặc kết hợp với rượu vang để thưởng thức.
+                    Dùng trực tiếp, làm quà tặng sang trọng hoặc kết hợp với cà phê, rượu nhẹ.
                 </p>
 
                 <h5>Bảo quản:</h5>
                 <p>
-                    Nơi khô ráo, thoáng mát, tránh ánh nắng trực tiếp. Nhiệt độ lý tưởng từ 18–22°C.
+                    Nơi khô ráo, thoáng mát, tránh ánh nắng. Nhiệt độ 18–22°C.
                 </p>
 
                 <h5>Trọng lượng:</h5>
-                <p>100g / thanh</p>
+                <p>100g – 200g tùy hộp.</p>
 
                 <h5>NSX & HSD:</h5>
                 <p>
-                    Xem trên bao bì. Hạn sử dụng 12 tháng kể từ ngày sản xuất.
+                    In trên bao bì, dùng tốt nhất trong 12 tháng.
                 </p>
 
                 <h5>Xuất xứ:</h5>
                 <p>
-                    Sản xuất tại Việt Nam, theo công nghệ Bỉ.
+                    Ý hoặc Đức – thương hiệu Ferrero.
                 </p>
             </div>
         </div>
@@ -504,21 +159,21 @@
                 <div class="col product-card-wrapper ms-auto"
                     style="border: 1px solid black; background-color: #fff;border-radius: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, 10); padding: 10px;">
                     <div class="product-card position-relative">
-                        <img src="../IMG/socola1.png" class="product-img" alt="Chocolate 1">
+                        <img src="../IMG/scl3.jpg" class="product-img" alt="Chocolate 1">
                         <div class="overlay">
-                            <a href="../HTML/product1_detail.html" class="btn btn-light view-details">Xem chi tiết</a>
+                            <a href="../HTML/product3_detail.html" class="btn btn-light view-details">Xem chi tiết</a>
                         </div>
                         <div class="product-card-body">
-                            <h5 class="card-title">Chocolate Dark 70%</h5>
+                            <h5 class="card-title">Socola Truffle Mix</h5>
                             <p class="card-text">Chocolate đen nguyên chất, hương vị đậm đà, tuyệt vời cho những ai yêu
                                 thích sự
                                 mạnh mẽ của socola đen.</p>
                         </div>
                         <div class="product-card-footer" id="product-card-footer-price">
-                            <span>140,000 VND</span>
+                            <span>170,000 VND</span>
                             <div class="product-buttons">
-                                <a href="#" class="btn-add-to-cart" data-name="Chocolate Dark 70%" data-price="140000"
-                                    data-image="../IMG/socola1.png">Thêm vào giỏ hàng</a>
+                                <a href="#" class="btn-add-to-cart" data-name="Socola Truffle Mix" data-price="170000"
+                                    data-image="../IMG/scl3.jpg">Thêm vào giỏ hàng</a>
                                 <a href="#">Mua ngay</a>
                             </div>
                         </div>
@@ -527,21 +182,20 @@
                 <div class="col product-card-wrapper ms-3"
                     style="border: 1px solid black; background-color: #fff;border-radius: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, 10); padding: 10px;">
                     <div class="product-card position-relative">
-                        <img src="../IMG/socola1.png" class="product-img" alt="Chocolate 1">
+                        <img src="../IMG/scl4.jpg" class="product-img" alt="Chocolate 1">
                         <div class="overlay">
-                            <a href="../HTML/product1_detail.html" class="btn btn-light view-details">Xem chi tiết</a>
+                            <a href="../HTML/product4_detail.html" class="btn btn-light view-details">Xem chi tiết</a>
                         </div>
                         <div class="product-card-body">
-                            <h5 class="card-title">Chocolate Dark 70%</h5>
-                            <p class="card-text">Chocolate đen nguyên chất, hương vị đậm đà, tuyệt vời cho những ai yêu
-                                thích sự
-                                mạnh mẽ của socola đen.</p>
+                            <h5 class="card-title">Socola Truffle Hạt Dẻ</h5>
+                            <p class="card-text">Vị đậm đà, giòn thơm từ hạt dẻ rang – lựa chọn không thể thiếu cho
+                                người sành socola.</p>
                         </div>
                         <div class="product-card-footer" id="product-card-footer-price">
-                            <span>140,000 VND</span>
+                            <span>100,000 VND</span>
                             <div class="product-buttons">
-                                <a href="#" class="btn-add-to-cart" data-name="Chocolate Dark 70%" data-price="140000"
-                                    data-image="../IMG/socola1.png">Thêm vào giỏ hàng</a>
+                                <a href="#" class="btn-add-to-cart" data-name="Socola Truffle Hạt Dẻ"
+                                    data-price="100000" data-image="../IMG/scl4.jpg">Thêm vào giỏ hàng</a>
                                 <a href="#">Mua ngay</a>
                             </div>
                         </div>
@@ -550,21 +204,20 @@
                 <div class="col product-card-wrapper ms-3 me-auto"
                     style="border: 1px solid black; background-color: #fff;border-radius: 10px;box-shadow: 0 2px 10px rgba(0, 0, 0, 10); padding: 10px;">
                     <div class="product-card position-relative">
-                        <img src="../IMG/socola1.png" class="product-img" alt="Chocolate 1">
+                        <img src="../IMG/scl5.jpg" class="product-img" alt="Chocolate 1">
                         <div class="overlay">
-                            <a href="../HTML/product1_detail.html" class="btn btn-light view-details">Xem chi tiết</a>
+                            <a href="../HTML/product5_detail.html" class="btn btn-light view-details">Xem chi tiết</a>
                         </div>
                         <div class="product-card-body">
-                            <h5 class="card-title">Chocolate Dark 70%</h5>
-                            <p class="card-text">Chocolate đen nguyên chất, hương vị đậm đà, tuyệt vời cho những ai yêu
-                                thích sự
-                                mạnh mẽ của socola đen.</p>
+                            <h5 class="card-title">Socola Tim Lãng Mạn</h5>
+                            <p class="card-text">Thiết kế trái tim ngọt ngào – món quà tuyệt vời cho người bạn yêu
+                                thương.</p>
                         </div>
                         <div class="product-card-footer" id="product-card-footer-price">
-                            <span>140,000 VND</span>
+                            <span >140,000 VND</span>
                             <div class="product-buttons">
-                                <a href="#" class="btn-add-to-cart" data-name="Chocolate Dark 70%" data-price="140000"
-                                    data-image="../IMG/socola1.png">Thêm vào giỏ hàng</a>
+                                <a href="#" class="btn-add-to-cart" data-name="Socola Tim Lãng Mạn" data-price="140000"
+                                    data-image="../IMG/scl5.jpg">Thêm vào giỏ hàng</a>
                                 <a href="#">Mua ngay</a>
                             </div>
                         </div>
@@ -624,163 +277,7 @@
     <footer class="footer text-center">
         <p>&copy; 2025 FEAT Chocolate. All rights reserved.</p>
     </footer>
-    <script>
-        const toggleSearch = document.getElementById("toggleSearch");
-        const searchDropdown = document.getElementById("searchDropdown");
-        const searchBox = document.getElementById("searchBox");
-
-        toggleSearch.addEventListener("click", function (e) {
-            e.preventDefault();
-            searchDropdown.classList.toggle("d-none");
-            if (!searchDropdown.classList.contains("d-none")) {
-                searchBox.focus();
-            }
-        });
-        document.addEventListener("click", function (e) {
-            if (!searchDropdown.contains(e.target) && !toggleSearch.contains(e.target)) {
-                searchDropdown.classList.add("d-none");
-            }
-        });
-        // Dữ liệu về sản phẩm
-        const chocolateData = {
-            dark: {
-                name: "Chocolate Dark 70%",
-                image: "../IMG/socola1.png",
-            },
-            milk: {
-                name: "Chocolate Sữa",
-                image: "../IMG/socola2.png",
-            },
-            white: {
-                name: "Chocolate Trắng",
-                image: "../IMG/socola3.png",
-            }
-        };
-
-        // Hàm cập nhật ảnh và tên sản phẩm
-        function changeChocolateType(type) {
-            const chocolate = chocolateData[type];
-
-            // Cập nhật tên sản phẩm
-            document.getElementById("product-name").textContent = chocolate.name;
-
-            // Cập nhật ảnh sản phẩm
-            document.getElementById("product-image").src = chocolate.image;
-
-            // Cập nhật dữ liệu cho các nút hành động (Thêm vào giỏ hàng, Mua ngay)
-            const addToCartButton = document.querySelector(".btn-add-to-cart");
-            const buyNowButton = document.querySelector(".btn-danger");
-
-            addToCartButton.setAttribute("data-name", chocolate.name);
-            addToCartButton.setAttribute("data-image", chocolate.image);
-
-            buyNowButton.setAttribute("data-name", chocolate.name);
-            buyNowButton.setAttribute("data-image", chocolate.image);
-        }
-
-        // Sự kiện thay đổi loại socola
-        document.getElementById("chocolateType").addEventListener("change", function () {
-            const selectedType = this.value;
-            changeChocolateType(selectedType);
-        });
-
-        // Khởi tạo mặc định loại socola là Dark
-        changeChocolateType("dark");
-
-
-        // Thêm vào giỏ hàng và hiển thị thông báo
-        document.querySelectorAll('.btn-add-to-cart').forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const productName = this.getAttribute('data-name');
-                const productPrice = parseInt(this.getAttribute('data-price'));
-                const productImage = this.getAttribute('data-image');
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const existingProduct = cart.find(item => item.name === productName);
-                if (existingProduct) {
-                    existingProduct.quantity += 1;
-                } else {
-                    const product = {
-                        name: productName,
-                        price: productPrice,
-                        image: productImage,
-                        quantity: 1
-                    };
-                    cart.push(product);
-                }
-                localStorage.setItem('cart', JSON.stringify(cart));
-                showToast(`${productName} đã được thêm vào giỏ hàng!`);
-            });
-        });
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessageText = document.getElementById('toastMessageText');
-            toastMessageText.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-        // Xử lý nút "Mua ngay"
-        document.querySelectorAll('.product-card-footer a:last-child').forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const cardFooter = this.closest('.product-card-footer');
-                const addToCartBtn = cardFooter.querySelector('.btn-add-to-cart');
-                const productName = addToCartBtn.getAttribute('data-name');
-                const productPrice = parseInt(addToCartBtn.getAttribute('data-price'));
-                const productImage = addToCartBtn.getAttribute('data-image');
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const existingProduct = cart.find(item => item.name === productName);
-                if (existingProduct) {
-                    existingProduct.quantity += 1;
-                } else {
-                    cart.push({
-                        name: productName,
-                        price: productPrice,
-                        image: productImage,
-                        quantity: 1
-                    });
-                }
-                localStorage.setItem('cart', JSON.stringify(cart));
-                window.location.href = '../HTML/cart.html';
-            });
-        });
-        const toggleButton = document.getElementById("toggleInfoButton");
-        const infoBoxes = document.querySelectorAll(".info-box");
-        let isExpanded = false;
-
-        // Khi bấm nút
-        toggleButton.addEventListener("click", function () {
-            isExpanded = !isExpanded;
-
-            infoBoxes.forEach((box, index) => {
-                if (isExpanded) {
-                    box.classList.add("visible");
-                } else {
-                    // Chỉ hiển thị box đầu tiên
-                    if (index === 0) {
-                        box.classList.add("visible");
-                    } else {
-                        box.classList.remove("visible");
-                    }
-                }
-            });
-
-            toggleButton.textContent = isExpanded ? "Thu gọn" : "Xem thêm";
-        });
-
-        // Khi load trang nếu nhỏ hơn 500px, chỉ hiện box đầu
-        window.addEventListener("load", () => {
-            if (window.innerWidth <= 500) {
-                infoBoxes.forEach((box, index) => {
-                    if (index === 0) {
-                        box.classList.add("visible");
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="../JS/product1_detail.js"></script>
 </body>
 
 </html>
