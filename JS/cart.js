@@ -79,7 +79,6 @@ function renderCart() {
     });
   });
 
-
   document.querySelectorAll('.quantity-input').forEach(input => {
     input.addEventListener('change', function () {
       const index = this.getAttribute('data-index');
@@ -118,19 +117,41 @@ checkoutForm.addEventListener('submit', (e) => {
   const customerName = document.getElementById('checkoutName').value;
   const customerPhone = document.getElementById('checkoutPhone').value;
   const customerAddress = document.getElementById('checkoutAddress').value;
+  const paymentMethod = document.getElementById('paymentMethod').value;
 
   let totalAmount = 0;
   cart.forEach(item => {
     totalAmount += item.price * item.quantity;
   });
-
+  const phoneRegex = /^(0|\+84)\d{9}$/;
+  if (!customerName) {
+    alert('Vui lòng nhập họ và tên.');
+    return;
+  }
+  if (!customerAddress) {
+    alert('Vui lòng nhập địa chỉ.');
+    return;
+  }
+  if (!customerPhone) {
+    alert('Vui lòng nhập số điện thoại.');
+    return;
+  }
+  if (!phoneRegex.test(customerPhone)) {
+    alert('Số điện thoại không hợp lệ.');
+    return;
+  }
+  if (!paymentMethod) {
+    alert('Vui lòng chọn hình thức thanh toán.');
+    return;
+  }
   const orderDetails = {
     customerName,
     customerPhone,
     customerAddress,
     items: cart,
     totalAmount,
-    date: new Date().toLocaleString()
+    date: new Date().toLocaleString(),
+    paymentMethod
   };
 
   saveOrderHistory(orderDetails);

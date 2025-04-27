@@ -79,12 +79,25 @@ const toggleSearch = document.getElementById("toggleSearch");
         <td>${order.items.map(item => `${item.name} (x${item.quantity})`).join(', ')}</td>
         <td>${order.totalAmount.toLocaleString()} VND</td>
         <td>${order.date}</td>
+        <td>${convertPaymentMethod(order.paymentMethod)}</td
       `;
           orderList.appendChild(row);
         });
       } else {
         const orderList = document.getElementById('orderList');
         orderList.innerHTML = '<tr><td colspan="6">Chưa có đơn hàng nào.</td></tr>';
+      }
+    }
+    function convertPaymentMethod(method) {
+      switch(method) {
+        case 'COD':
+          return 'Thanh toán khi nhận hàng';
+        case 'BankTransfer':
+          return 'Chuyển khoản ngân hàng';
+        case 'EWallet':
+          return 'Ví điện tử';
+        default:
+          return 'Không xác định';
       }
     }
     document.addEventListener('DOMContentLoaded', displayOrderHistory);

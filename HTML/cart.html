@@ -175,6 +175,15 @@
               <label for="checkoutPhone" class="form-label me-2 mb-0" style="width: 120px;">Số điện thoại</label>
               <input type="tel" class="form-control" id="checkoutPhone" required>
             </div>
+            <div class="mb-3 d-flex align-items-center">
+              <label for="paymentMethod" class="form-label me-2 mb-0" style="width: 120px;">Hình thức</label>
+              <select class="form-select" id="paymentMethod" required>
+                <option value="" disabled selected>-- Chọn hình thức --</option>
+                <option value="COD">Thanh toán khi nhận hàng (COD)</option>
+                <option value="BankTransfer">Chuyển khoản ngân hàng</option>
+                <option value="EWallet">Ví điện tử (Momo, ZaloPay, ...)</option>
+              </select>
+            </div>
             <button type="submit" class="btn btn-primary">Xác nhận thanh toán</button>
           </form>
         </div>
