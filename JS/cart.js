@@ -114,29 +114,36 @@ checkoutForm.addEventListener('submit', (e) => {
     alert("Giỏ hàng của bạn hiện tại trống. Vui lòng thêm sản phẩm vào giỏ.");
     return;
   }
+
   const customerName = document.getElementById('checkoutName').value;
-  const customerEmail = document.getElementById('checkoutEmail').value;
   const customerPhone = document.getElementById('checkoutPhone').value;
+  const customerAddress = document.getElementById('checkoutAddress').value;
+
   let totalAmount = 0;
   cart.forEach(item => {
     totalAmount += item.price * item.quantity;
   });
+
   const orderDetails = {
     customerName,
-    customerEmail,
     customerPhone,
+    customerAddress,
     items: cart,
     totalAmount,
     date: new Date().toLocaleString()
   };
+
   saveOrderHistory(orderDetails);
   alert("Cảm ơn bạn đã đặt hàng! Chúng tôi sẽ liên hệ với bạn sớm.");
   localStorage.removeItem('cart');
   renderCart();
+
   const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
   modal.hide();
   checkoutForm.reset();
 });
+
+
 document.addEventListener('DOMContentLoaded', renderCart);
 const toggleButton = document.getElementById("toggleInfoButton");
 const infoBoxes = document.querySelectorAll(".info-box");

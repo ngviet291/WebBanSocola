@@ -46,7 +46,6 @@ const toggleSearch = document.getElementById("toggleSearch");
       document.getElementById('inputInfo').style.display = 'none';
       document.getElementById('savedInfo').style.display = 'block';
       document.getElementById('showFullname').textContent = fullname;
-      document.getElementById('showEmail').textContent = email;
       document.getElementById('showPhone').textContent = phone;
       document.getElementById('showAddress').textContent = address;
     }
@@ -75,7 +74,7 @@ const toggleSearch = document.getElementById("toggleSearch");
           const row = document.createElement('tr');
           row.innerHTML = `
         <td>${order.customerName}</td>
-        <td>${order.customerEmail}</td>
+        <td>${order.customerAddress}</td>
         <td>${order.customerPhone}</td>
         <td>${order.items.map(item => `${item.name} (x${item.quantity})`).join(', ')}</td>
         <td>${order.totalAmount.toLocaleString()} VND</td>
